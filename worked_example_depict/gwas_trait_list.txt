@@ -1,0 +1,2 @@
+gwas_path	trait_name
+../example_files//body_BMIz_forLDSC.sumstats.gz	bmi

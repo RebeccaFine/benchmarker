@@ -1,0 +1,3 @@
+gwas_path	trait_name
+../example_files//body_BMIz_forLDSC.sumstats.gz	bmi
+../example_files/ibd_liu_forLDSC.sumstats.gz	ibd
