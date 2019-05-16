@@ -51,7 +51,7 @@ Note that you can decide to use a window size other than 50 kb by changing the p
 
 For this, we assume you have already run your method of interest in a leave-one-chromosome-out fashion.  For each of these runs, prioritize the top 10% of genes on the withheld chromosome and put them into a single list of gene IDs.
 
-Once you have generated your list of prioritized input genes, you will need to 1) annotate all SNPs in the baseline model as to whether they are prioritized or not, 2) calculate LD scores for the annotation you've created, 3) partition the heritability for your GWAS of interest, and 4) normalize the partitioned heritability by overall trait heritability. 
+Once you have generated your list of prioritized input genes, you will need to 1) annotate all SNPs in the baseline model as to whether they are prioritized or not, 2) calculate LD scores for the annotation you've created, 3) partition the heritability for your GWAS of interest, and 4) normalize the partitioned heritability by average per-SNP heritability for the trait. 
 
 I have structured this code so it is easy to test multiple GWASes at once, which I hope will be useful if you are testing performance of a particular method.  I have also included a script, generate_submission_scripts.py, which takes as input a single config file (generate_submission_scripts_example) and will produce 3 shell scripts that cover all of the other steps in this section.
 
