@@ -24,9 +24,9 @@ Data:
 * 1000G_Phase3_plinkfiles.tgz  
 * 1000G_Phase3_weights_hm3_no_MHC.tgz 
 * FTP site: ftp://ftp.broadinstitute.org/outgoing/benchmarker_data/
- * Binarized gene sets (*_DEPICTGenes_Ensembl_depictAndGtexGeneIntersection.txt)
- * Gene window files (gene_window_depict_and_gtex_gene_intersection_50kb.tar.gz)
- * MAGMA .annot file (depictAndGtexGeneIntersection_noMHC.gene.loc, depictAndGtexGeneIntersection_noMHC.gene.annot)
+    * Binarized gene sets (*_DEPICTGenes_Ensembl_depictAndGtexGeneIntersection.txt)
+    * Gene window files (gene_window_depict_and_gtex_gene_intersection_50kb.tar.gz)
+    * MAGMA .annot file (depictAndGtexGeneIntersection_noMHC.gene.loc, depictAndGtexGeneIntersection_noMHC.gene.annot)
 
 We have provided several use-case examples:
 
