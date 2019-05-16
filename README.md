@@ -1,8 +1,8 @@
 # Benchmarker
 Author: Rebecca S. Fine
 
-This repository contains a collection of scripts people may find useful if they wish to implement our Benchmarker strategy, described in this manuscript: https://www.biorxiv.org/content/early/2018/12/17/497602. If you use these, please cite:  
-Fine et al. (in press) American Journal of Human Genetics
+This repository contains a collection of scripts people may find useful if they wish to implement our Benchmarker strategy, described in this manuscript: https://www.cell.com/ajhg/fulltext/S0002-9297(19)30146-6. If you use these, please cite:  
+Fine et al. (2019) American Journal of Human Genetics
 
 Software:   
 LDSC software: https://github.com/bulik/ldsc (version 1.0) - we also recommend looking over the wiki here
