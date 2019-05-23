@@ -6,7 +6,7 @@ Fine et al. (2019) American Journal of Human Genetics
 
 Software:   
 LDSC software: https://github.com/bulik/ldsc (version 1.0) - we also recommend looking over the wiki here
-DEPICT software: https://data.broadinstitute.org/mpg/depict/ (release 194)  
+DEPICT software: https://data.broadinstitute.org/mpg/depict/ (release 194) (see important note about DEPICT below)
 MAGMA software: https://ctg.cncr.nl/software/magma (version 1.06b)  
 
 Dependencies:  
@@ -35,6 +35,9 @@ We have provided several use-case examples:
 3) MAGMA (this is also a fairly general implementation for enrichment-based results)
 
 For all examples, download https://data.broadinstitute.org/alkesgroup/UKBB/body_BMIz.sumstats.gz
+
+# Important Note about DEPICT
+There are some versions of DEPICT in which the _geneprioritization_outside_input_loci.txt file (which is the relevant one for prioritization) is missing a tab between the 'P value' and 'False discovery rate' columns for genes with FDR >= 0.20. Please check your output files and fix this if this problem is present.
 
 # Important first step for any of these analyses: calculating LD scores for gene windows
 
