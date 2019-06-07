@@ -213,7 +213,7 @@ To calculate the particular .annot files we used (depictAndGtexGeneIntersection_
  * The 1kg/g1000* files can be downloaded from the "Reference data" table; we use European data, but obviously you should select the population that matches your data
 * Run ../magma --annotate --snp-loc ../1kg/g1000_eur.bim --gene-loc depictAndGtexGeneIntersection_noMHC.gene.loc --out depictAndGtexGeneIntersection_noMHC
 
-You can also use their provided gene.loc file, which contains more genes (NCBI37.3.genes.loc; this is found in their "Auxiliary files" table, and you will likely want the build 37 data to match the build of LDSC), or make your own based on your preferred list of gene boundaries.  From their or any other .gene.loc file, you can create a .annot file the same way as described above (with teh -. Detailed instructions for this are given in the MAGMA manual.
+You can also use their provided gene.loc file, which contains more genes (NCBI37.3.genes.loc; this is found in their "Auxiliary files" table, and you will likely want the build 37 data to match the build of LDSC), or make your own based on your preferred list of gene boundaries.  From their or any other .gene.loc file, you can create a .annot file the same way as described above (with the --annotate --snp-loc command referenced earlier). Detailed instructions for this are given in the MAGMA manual.
 
 
 1) Calculate MAGMA gene-level results from GWAS
