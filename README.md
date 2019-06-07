@@ -5,9 +5,10 @@ This repository contains a collection of scripts people may find useful if they 
 Fine et al. (2019) American Journal of Human Genetics
 
 Software:   
-LDSC software: https://github.com/bulik/ldsc (version 1.0) - we also recommend looking over the wiki here
-DEPICT software: https://data.broadinstitute.org/mpg/depict/ (release 194) (see important note about DEPICT below)
-MAGMA software: https://ctg.cncr.nl/software/magma (version 1.06b)  
+* LDSC software: https://github.com/bulik/ldsc (version 1.0) - we also recommend looking over the wiki here
+* DEPICT software: https://data.broadinstitute.org/mpg/depict/ (release 194) (see important note about DEPICT below)
+* MAGMA software: https://ctg.cncr.nl/software/magma (version 1.06b)  
+
 
 Dependencies:  
 Pandas (>= 0.17)  
@@ -59,6 +60,19 @@ Once you have generated your list of prioritized input genes, you will need to 1
 I have structured this code so it is easy to test multiple GWASes at once, which I hope will be useful if you are testing performance of a particular method.  I have also included a script, generate_submission_scripts.py, which takes as input a single config file (generate_submission_scripts_example) and will produce 3 shell scripts that cover all of the other steps in this section.
 
 Note that template submission files are in a format appropriate for submitting a job as a task array on an UGER-based system. This should be relatively straightforward to convert to any other type of queueing system (e.g. LSF).
+
+You will need to process your input GWAS for LDSC with their munge_sumstats.py script (see their wiki for details); this will format your GWAS data with the appropriate input columns. Here is an example command for munging our BMI summary statistics.
+
+```
+python ldsc/munge_sumstats.py \
+        --sumstats body_BMIz.sumstats.gz \
+        --out body_BMIz_forLDSC.sumstats.gz \
+        --merge-alleles ldsc/data/w_hm3.snplist
+```
+
+Another technical note to be aware of is that for the GWAS analyzed with LMM methods (e.g. BOLT-LMM), the effective N is larger than the actual N. This will not matter for any values that are normalized by overall trait h2 (e.g. normalized tau, proportion of h2 explained), but it does affect raw tau values (and of course their standard error). Note that in our manuscript, we focus exclusively on normalized tau, and we recommend others do the same; however, in the interest of thoroughness, we mention this here.
+
+If you wish to analyze these values, you will need to divide them by (Neff/N).  For the GWAS in our manuscript from BOLT-LMM, these values can be found in the README of https://data.broadinstitute.org/alkesgroup/UKBB. For a more detailed explanation of this issue, see the supplement of "Functional architecture of low-frequency variants highlights strength of negative selection across coding and non-coding annotations" (Gazal et al. 2018).
 
 **A full example is in benchmarker/worked_example_from_gene_list/. Go to this folder to execute the following steps.**
 
