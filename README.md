@@ -4,6 +4,8 @@ Author: Rebecca S. Fine
 This repository contains a collection of scripts people may find useful if they wish to implement our Benchmarker strategy, described in this manuscript: https://www.cell.com/ajhg/fulltext/S0002-9297(19)30146-6. If you use these, please cite:  
 Fine et al. (2019) American Journal of Human Genetics
 
+If you have questions, you can email me at rebeccafine@g.harvard.edu or open an issue in the repository.
+
 Software:   
 * LDSC software: https://github.com/bulik/ldsc (version 1.0) - we also recommend looking over the wiki here
 * DEPICT software: https://data.broadinstitute.org/mpg/depict/ (release 194) (see important note about DEPICT below)
