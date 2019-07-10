@@ -177,6 +177,8 @@ We assume you have already run DEPICT on your GWAS of interest in a leave-one-ch
 leave_out_chr: 1
 ```
 
+To confirm that the chromosome has indeed been left out, you can check the *_geneprioritization.txt output file -- it should not contain any genes on the left-out chromosome. All genes on the left-out chromosome should be in the *_geneprioritization_outside_input_loci.txt file (also see the "Important note about DEPICT" section above and make sure your FDR column is not missing any tabs).
+
 Some DEPICT prioritization output files are provided here for the purposes of this example: body_BMIz_standard_5e-8_noChr*_geneprioritization_outside_input_loci_corrected.txt.gz
 
 Steps:
