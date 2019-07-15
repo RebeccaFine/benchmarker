@@ -1,6 +1,8 @@
 # Benchmarker
 Author: Rebecca S. Fine
 
+Note 7/15/19: The code for generating annotations + LD scores for gene windows has been simplified. The generate_gene_window/ folder has been removed, and the necessary script and template (annotate_geneWindow.py and annotate_and_compute_ld_scores_geneWindow_template.sh) are in the src/ directory.
+
 This repository contains a collection of scripts people may find useful if they wish to implement our Benchmarker strategy, described in this manuscript: https://www.cell.com/ajhg/fulltext/S0002-9297(19)30146-6. If you use these, please cite:  
 Fine et al. (2019) American Journal of Human Genetics
 
@@ -43,15 +45,15 @@ For all examples, download https://data.broadinstitute.org/alkesgroup/UKBB/body_
 There are some versions of DEPICT in which the _geneprioritization_outside_input_loci.txt file (which is the relevant one for prioritization) is missing a tab between the 'P value' and 'False discovery rate' columns for genes with FDR >= 0.20. Please check your output files and fix this if this problem is present.
 
 # Important first step for any of these analyses: calculating LD scores for gene windows
+## EDITED for simplicity 7/15/19
 
-The first step is to generate what we refer to as "gene window" LD scores. Specifically, we will annotate all SNPs within 50 kb of any gene in your defined gene boundary as "1" and everything else as "0". This will serve as a control when we partition heritability (i.e. controlling for the fact that SNPs near/within any gene might be enriched for heritability). Templates for this are in the generate_gene_window/ folder.
+The first step is to generate what we refer to as "gene window" LD scores. Specifically, we will annotate all SNPs within 50 kb of any gene in your defined gene boundary as "1" and everything else as "0". This will serve as a control when we partition heritability (i.e. controlling for the fact that SNPs near/within any gene might be enriched for heritability). A template for this is in src/annotate_and_compute_ld_scores_geneWindow_template.sh. The necessary paths and parameters are listed at the top and can be changed for your particular situation. (The script calls src/annotate_geneWindow.py to perform the actual annotation.)
 	 
-	 1_annotate_geneWindow.sh
-	 2_compute_LD_scores_geneWindow.sh
-
-The necessary files for running these can be downloaded from https://data.broadinstitute.org/alkesgroup/LDSCORE/. For more information, check out the LDSC wiki: https://github.com/bulik/ldsc/.
+The necessary files for running these can be downloaded from https://data.broadinstitute.org/alkesgroup/LDSCORE/. For more information, check out the LDSC wiki: https://github.com/bulik/ldsc/. In this case, we use gene boundaries in GPL570ProbeENSGInfo+HGNC_reformatted_noMHC_depictAndGtexGeneIntersection_RF.txt (provided on the Github and in the FTP site); these are the gene boundaries used in the AJHG paper, which represent genes in both DEPICT and GTEx excluding the MHC.
 
 Note that you can decide to use a window size other than 50 kb by changing the parameter in the 1_annotate_geneWindow.sh script. If you do that, just make sure that that window size is consistent for *both* your gene window annotation and your prioritization annotation.
+
+Also note that the gene window files used in the manuscript are on the FTP site (gene_window_depict_and_gtex_gene_intersection_50kb.tar.gz). These are based on the input files called in the template script.
 
 # General use case (gene prioritization)
 

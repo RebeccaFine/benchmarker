@@ -10,6 +10,7 @@ parser.add_argument('--curr_chromosome')
 parser.add_argument('--label')
 parser.add_argument('--window_size_in_kb')
 parser.add_argument('--gene_boundary_file') # /cvar/jhlab/rebecca/depict_versions/depict_download_10-3-16/DEPICT/data/mapping_and_annotation_files/GPL570ProbeENSGInfo+HGNC_reformatted_noMHC_depictAndGtexGeneIntersection_RF.txt
+parser.add_argument('--baseline_file') # /cvar/jhlab/rebecca/ldsc/data/phase_3/baseline_v1.1/baseline. 
 
 args = parser.parse_args()
 
@@ -17,6 +18,7 @@ curr_chromosome = args.curr_chromosome
 label = args.label
 window_size_in_kb = int( args.window_size_in_kb )
 gene_boundary_file = args.gene_boundary_file
+baseline_file = args.baseline_file
 
 print 'Label:', label
 print '\n'
@@ -51,7 +53,8 @@ print '\n'
 # go through each SNP in annotation file and annotate as prioritized or nonprioritized 
 not_found = set()
 output_annot_file = '%s_%skb_geneWindow.%s.annot.gz' %(label, str(window_size_in_kb), str(curr_chromosome))
-original_baseline_file = '/cvar/jhlab/rebecca/ldsc/data/phase_3/baseline_v1.1/baseline.%s.annot.gz' %str(curr_chromosome)
+#original_baseline_file = '/cvar/jhlab/rebecca/ldsc/data/phase_3/baseline_v1.1/baseline.%s.annot.gz' %str(curr_chromosome)
+original_baseline_file = '{baseline_file}{curr_chrom}.annot.gz'.format( baseline_file = baseline_file, curr_chrom = curr_chromosome )
 
 with gzip.open( output_annot_file, 'wb') as output_annot:
     with gzip.open( original_baseline_file ) as annot_file:
