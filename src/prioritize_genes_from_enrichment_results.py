@@ -11,7 +11,7 @@ print '\n'
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--trait', help = 'Trait of interest. This will be the first part of the output label for all output files')
-parser.add_argument('--results_file', help = 'Enrichment result to convert to prioritized genes')
+parser.add_argument('--results_file', help = 'Enrichment result to convert to prioritized genes. Should be 22 files with the chromosome number replaced with @')
 parser.add_argument('--gene_boundary_file', help = 'File with all gene IDs in both Ensembl and HGNC, plus chromosomes. Gene ID header should be ensembl_id, chromosome header should be ensembl_chromosome, HGNC header should be HGNC (tab-delimited). May contain other columns. Note that number of genes to prioritize per chromosome will be defined based on this file. Therefore, make sure these boundaries are defined only for the genes that could potentially be prioritized from your data set.')
 parser.add_argument('--set_definitions_file', help = 'File where each line represents one gene set (defined as whatever enrichment you are performing -- e.g. could be sets of genes expressed in different tissues. First column is the name of the set.  Member genes are listed after the name of the set (tab-delimited)') #'/cvar/jhlab/rebecca/magma/gene_sets/depict_and_gtex_intersection/%s_DEPICTGenes_Ensembl_depictAndGtexGeneIntersection.txt
 parser.add_argument('--set_definitions_label', help = 'Label for the set definitions used')
@@ -20,7 +20,7 @@ parser.add_argument('--percentage_cutoff', help = "Percentage of genes on each c
 parser.add_argument('--results_file_set_col', help = 'Column in the results file containing the names of the enriched gene sets')
 parser.add_argument('--results_file_col_to_sort_on',help = "Column in enrichment file to sort gene sets on (e.g. p-values)")
 parser.add_argument('--sort_direction', help = 'Direction to sort gene sets in prioritization file (ascending or descending). P-values would be ascending, for example')
-parser.add_argument('--results_file_separator', help = 'Column separator for results file. Can be \t, ' ', or \s+')
+parser.add_argument('--results_file_separator', help = 'Column separator for results file. Can be tab, ' ', or \s+')
 parser.add_argument('--output_directory')
 
 args = parser.parse_args()
@@ -46,8 +46,13 @@ sort_direction = args.sort_direction
 results_file_separator = args.results_file_separator 
 results_file_set_col = args.results_file_set_col
 
-if results_file_separator not in ['\t',' ', '\s+']:
-    raise Exception('--results_file_separator must be \\t, "' '", or \s+')
+if '@' not in results_file:
+    raise Exception('Should be 22 input files with the chromosome number replaced with @. Your input data does not have a @ character')
+
+if results_file_separator not in [' ', '\s+', 'tab']:
+    raise Exception('--results_file_separator must be tab, "' '", or \s+')
+if results_file_separator == 'tab':
+    results_file_separator = '\t'
 
 if sort_direction == 'ascending':
     sort_direction_bool = True
