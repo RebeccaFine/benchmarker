@@ -173,10 +173,12 @@ qsub test_partitionHeritability.sh
 # DEPICT use case
 **Example in benchmarker/worked_example_depict/.**
 
-We assume you have already run DEPICT on your GWAS of interest in a leave-one-chromosome-out fashion (this example is based on body_BMIz.sumstats.gz).  Example cfgs for this can be found in worked_example_depict/body_BMIz_standard_5e-8_noChr*.cfg (you will need to create 22 cfgs, in which each one specifies withholding a different chromosome). The critical piece is the following argument in the cfg:
+We assume you have already run DEPICT on your GWAS of interest in a leave-one-chromosome-out fashion (this example is based on body_BMIz.sumstats.gz).  Example cfgs for this can be found in worked_example_depict/body_BMIz_standard_5e-8_noChr*.cfg (you will need to create 22 cfgs, in which each one specifies withholding a different chromosome). The critical pieces are the following two arguments in the cfg (note that if you're using the .cfg template that comes with DEPICT, prioritize_genes_outside_input_loci is by default set to no):
 ```
 # Chromosome to be left-out, leave empty if all chromosomes should be included (for bencharmking purposes)
 leave_out_chr: 1
+
+prioritize_genes_outside_input_loci: yes
 ```
 
 To confirm that the chromosome has indeed been left out, you can check the *_geneprioritization.txt output file -- it should not contain any genes on the left-out chromosome. All genes on the left-out chromosome should be in the *_geneprioritization_outside_input_loci.txt file (also see the "Important note about DEPICT" section above and make sure your FDR column is not missing any tabs).
@@ -188,8 +190,8 @@ Steps:
 
 1) ./1_get_genes_from_ranked_list_example.sh
 
-python ../src/0_get_genes_from_ranked_list.py \
-    --input_file ../example_files/body_BMIz_standard_5e-8_noChr@_geneprioritization_outside_input_loci_corrected.txt.gz \
+python ../src/get_genes_from_ranked_list.py \
+    --input_file ../worked_example_depict/body_BMIz_standard_5e-8_noChr@_geneprioritization_outside_input_loci_corrected.txt.gz \
     --gene_col_name 'Ensembl gene ID' \
     --sort_direction ascending \
     --col_to_sort_on 'P value' \
