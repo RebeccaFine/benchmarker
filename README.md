@@ -87,7 +87,7 @@ gwas_path       trait_name
 ../example_files/body_BMIz_forLDSC.sumstats.gz bmi
 ../example_files/ibd_liu_forLDSC.sumstats.gz    ibd
 ```
-* list of priortiized genes (in this case, examples are in bmi_genes.txt and ibd_genes.txt)
+* list of prioritized genes (in this case, examples are in bmi_genes.txt and ibd_genes.txt)
 
 ## Automated pipeline
     python src/generate_submission_scripts.py generate_submission_scripts_example.cfg
@@ -193,6 +193,7 @@ Steps:
 python ../src/get_genes_from_ranked_list.py \
     --input_file ../worked_example_depict/body_BMIz_standard_5e-8_noChr@_geneprioritization_outside_input_loci_corrected.txt.gz \
     --gene_col_name 'Ensembl gene ID' \
+	--chrom_col Chromosome \
     --sort_direction ascending \
     --col_to_sort_on 'P value' \
     --gene_boundary_file ../data/GPL570ProbeENSGInfo+HGNC_reformatted_noMHC_depictAndGtexGeneIntersection_RF.txt \
@@ -218,7 +219,7 @@ depict_concatenate.sh # groups multiple tested GWAS into a single file (if there
 
 ### Summary of steps:
 ```
-./1_get_genes_from_ranked_list_example.sh
+./get_genes_from_ranked_list_example.sh
 python ../src/generate_submission_scripts.py 2_generate_submission_scripts_depict.cfg 
 qsub depict_annotateAndComputeLDScores.sh
 qsub depict_partitionHeritability.sh
@@ -397,7 +398,7 @@ SET_2   ENS3    ENS5    ENS3...
 Note that at the moment, there is some implicit ranking in the gene set definitions, where genes listed earlier are considered better than those listed later. This only matters in the case where the script is approaching the 10% cutoff for number of genes -- if it can only prioritize only some genes in the gene set before hitting the cutoff, it will always go from first-listed to last.
 
 ```
-        python 0_prioritize_genes_from_enrichment_results.py \
+        python prioritize_genes_from_enrichment_results.py \
         --results_file
         --set_definitions_file
         --percentage_cutoff # we recommend 10, but you can change this
