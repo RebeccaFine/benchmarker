@@ -1,10 +1,6 @@
 # Benchmarker
 Author: Rebecca S. Fine
 
-Note 2/26/20: 
--I have added a couple of extra instructions for using MAGMA 1.07 instead of 1.06, since 1.06 is no longer available for download. There are just two simple substitutions in steps 3 and 4 for "MAGMA use case."
--I have added two new files to the ftp site, depict_noMHC.gene.loc and depict_noMHC.genes.annot. These can be used as input for MAGMA instead of depictAndGtexGeneIntersection_noMHC.* if you wish to use all genes in DEPICT (in the depictAndGtexGeneIntersection_noMHC.* files, genes that are absent from our GTEx data were removed to faciliated comparison).
-
 Note 7/15/19: The code for generating annotations + LD scores for gene windows has been simplified. The generate_gene_window/ folder has been removed, and the necessary script and template (annotate_geneWindow.py and annotate_and_compute_ld_scores_geneWindow_template.sh) are in the src/ directory.
 
 This repository contains a collection of scripts people may find useful if they wish to implement our Benchmarker strategy, described in this manuscript: https://www.cell.com/ajhg/fulltext/S0002-9297(19)30146-6. If you use these, please cite:  
@@ -269,10 +265,6 @@ You can also use their provided gene.loc file, which contains more genes (NCBI37
         --gene-covar ../data/GPL570-GPL96-GPL1261-GPL1355TermGeneZScores-MGI_MF_CC_RT_IW_BP_KEGG_z_z_GTExGenesOnly.txt onesided=greater \
         --out ${trait}_noChr${chrom}
     ```
-Note: If you are using MAGMA 1.07, remove the "onesided=greater" command and add the additional flag:
-```
---model direction-covar=greater
-```
 
 4) From enrichment results, prioritize the top genes on the withheld chromosome
 	./4_prioritize_genes_from_enrichment_results_example.sh
@@ -294,8 +286,6 @@ Note: If you are using MAGMA 1.07, remove the "onesided=greater" command and add
     --results_file_separator '\s+'
     ```
 * This produces a file of prioritized genes (with a header), including not only the gene IDs but the chromosome and the enriched gene set the prioritized gene came from. Note that this script can also be used for converting other types of enrichment results to gene prioritization -- see below for details.
-
-Note: if you are using MAGMA 1.07, replace `--results_file_set_col COVAR` with `--results_file_set_col VARIABLE`.
 
 5) After this, the steps are the same as the general use case; a relevant cfg file is provided in this folder (5_generate_submission_scripts_example_magma.cfg):
 	python ../src/generate_submission_scripts.py 5_generate_submission_scripts_example.cfg
