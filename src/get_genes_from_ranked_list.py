@@ -93,7 +93,6 @@ else:
     for chrom in range(1,23):
         filename = input_file_name.replace('@', str(chrom) )
         input_file_chrom = pd.read_csv( filename, sep = '\t', compression = compression)
-        input_file_chrom = input_file_chrom[ input_file_chrom[ gene_col_name ].isin( all_genes ) ].copy()
         
         # if no chromosome column, add one
         if chrom_col_name == None:
@@ -103,6 +102,7 @@ else:
             input_file_chrom[ chrom_col_name ] = input_file_chrom[ chrom_col_name ].astype('int64')
             #print input_file_chrom.head(5)
 
+        input_file_chrom = input_file_chrom[ input_file_chrom[ gene_col_name ].isin( all_genes ) ].copy()
         input_file_chrom = input_file_chrom[ input_file_chrom[ chrom_col_name ]  == chrom ].copy()
         input_file_chrom.sort_values( col_to_sort_on, inplace = True, ascending = sort_direction_bool)
         input_file_chrom.reset_index(inplace = True, drop = True)
