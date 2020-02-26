@@ -1,9 +1,9 @@
 # Benchmarker
 Author: Rebecca S. Fine
 
-Note 2/26/20: 
--I have added a couple of extra instructions for using MAGMA 1.07 instead of 1.06, since 1.06 is no longer available for download. There are just two simple substitutions in steps 3 and 4 for "MAGMA use case."
--I have added two new files to the ftp site, depict_noMHC.gene.loc and depict_noMHC.genes.annot. These can be used as input for MAGMA instead of depictAndGtexGeneIntersection_noMHC.* if you wish to use all genes in DEPICT (in the depictAndGtexGeneIntersection_noMHC.* files, genes that are absent from our GTEx data were removed to faciliated comparison).
+Notes 2/26/20: 
+* I have added a couple of extra instructions for using MAGMA 1.07 instead of 1.06, since 1.06 is no longer available for download. There are just two simple substitutions in steps 3 and 4 for "MAGMA use case."
+* I have added two new files to the ftp site, depict_noMHC.gene.loc and depict_noMHC.genes.annot. These can be used as input for MAGMA instead of depictAndGtexGeneIntersection_noMHC.* if you wish to use all genes in DEPICT (in the depictAndGtexGeneIntersection_noMHC.* files, genes that are absent from our GTEx data were removed to faciliated comparison).
 
 Note 7/15/19: The code for generating annotations + LD scores for gene windows has been simplified. The generate_gene_window/ folder has been removed, and the necessary script and template (annotate_geneWindow.py and annotate_and_compute_ld_scores_geneWindow_template.sh) are in the src/ directory.
 
