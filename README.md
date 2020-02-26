@@ -407,7 +407,7 @@ SET_2   ENS3    ENS5    ENS3...
 Note that at the moment, there is some implicit ranking in the gene set definitions, where genes listed earlier are considered better than those listed later. This only matters in the case where the script is approaching the 10% cutoff for number of genes -- if it can only prioritize only some genes in the gene set before hitting the cutoff, it will always go from first-listed to last.
 
 ```
-        python 0_prioritize_genes_from_enrichment_results.py \
+        python prioritize_genes_from_enrichment_results.py \
         --results_file
         --set_definitions_file
         --percentage_cutoff # we recommend 10, but you can change this
