@@ -2,8 +2,12 @@ import argparse
 import pandas as pd
 import datetime
 
+# Reads in gene prioritization files from leave-one-chromosome-out runs and creates the top-10% list of genes for input to Benchmarker (taking the top 10% of genes on chromosome 1 from the leave-out-chromosome-1 run, the top 10% of genes on chromosome 2 from the leave-out-chromosome-2 run, etc.) 10% can be changed to desired percentage.
+
+
 parser = argparse.ArgumentParser()
-parser.add_argument( '--input_file', help = 'Prioritization file. Can be a single file with genes and scores for all chromosomes (where each chromosome has been analyzed separately in a leave-one-chromosome-out run) or a separate one for each chromosome (where the left-out chromosome is in the name of the file; in this case, genes on the withheld chromosome will be used for prioritization). If separate, replace the chromosome number with @ in the file name')
+parser.add_argument( '--input_file', help = 'Prioritization files. This generally will be 22 separate files, one per chromosome (where the left-out chromosome is in the name of the file; replace the chromosome number with @ in the file name -- genes on the withheld chromosome will be used for prioritization). \
+ Alternatively, you may specify a single input file that contains genes on all chromosomes *IF* the values in that file come from leave-one-out runs (i.e. the p-values for all genes listed for chromosome 1 were calculated in a run which left out chromosome 1, the p-values for all genes listed for chromosome 2 were calculated in a run which left out chromosome 2, etc.')
 parser.add_argument('--gene_col_name', help = 'Name of column containing genes in prioritization file')
 parser.add_argument('--col_to_sort_on', help = 'Column in prioritization file to sort genes on (e.g. p-values)')
 parser.add_argument('--sort_direction', help = 'Direction to sort genes in prioritization file (ascending or descending). P-values would be ascending, for example')
